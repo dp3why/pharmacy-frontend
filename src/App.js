@@ -14,7 +14,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
     checkLogin();
-  }, [authed]);
+  }, []);
 
   const checkLogin = async () => {
     // const SERVER_ORIGIN = process.env.REACT_APP_SERVER_ORIGIN

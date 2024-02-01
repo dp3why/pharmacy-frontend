@@ -164,7 +164,7 @@ const Showcase = ({ authed }) => {
 
       {curRest && (
         <Modal
-          loading={loading}
+          loading={loading ? loading : false}
           title={
             <Title
               style={{
@@ -196,7 +196,7 @@ const Showcase = ({ authed }) => {
             }}
             dataSource={productData}
             renderItem={(item, index) => (
-              <List.Item key={"key" + index} loading={loading}>
+              <List.Item key={"key" + index}>
                 <Card
                   title={item.name}
                   extra={<AddToCartButton authed={authed} itemId={item.id} />}
