@@ -185,7 +185,6 @@ const Showcase = ({ authed }) => {
         >
           <List
             style={{ marginTop: 20 }}
-            loading={loading}
             grid={{
               gutter: 16,
               xs: 1,

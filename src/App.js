@@ -176,7 +176,6 @@ function App() {
           }}
         >
           <Title
-            autoSize={true}
             level={1}
             style={{
               fontFamily: "Helvetica, sans-serif",
