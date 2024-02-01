@@ -69,7 +69,7 @@ const Showcase = ({ authed }) => {
         setSellerData(data);
       })
       .catch((err) => {
-        message.error(err.message);
+        console.error(err.message);
       })
       .finally(() => {
         setLoadingRest(false);
@@ -84,7 +84,7 @@ const Showcase = ({ authed }) => {
           setProductData(data);
         })
         .catch((err) => {
-          message.error(err.message);
+          console.error(err.message);
         })
         .finally(() => {
           setLoading(false);

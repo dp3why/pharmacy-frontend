@@ -69,7 +69,7 @@ export const getSellers = () => {
   const url = `${SERVER_ORIGIN}/sellers/menu`;
   return fetch(url).then((response) => {
     if (response.status < 200 || response.status >= 300) {
-      console.error("Fail to get sellers");
+      throw Error("Fail to get sellers");
     }
     return response.json();
   });
