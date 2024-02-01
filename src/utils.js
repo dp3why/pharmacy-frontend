@@ -1,6 +1,6 @@
-const SERVER_ORIGIN = process.env.REACT_APP_SERVER_ORIGIN
-  ? process.env.REACT_APP_SERVER_ORIGIN
-  : "";
+// const SERVER_ORIGIN = process.env.REACT_APP_SERVER_ORIGIN
+
+const SERVER_ORIGIN = "";
 
 export const login = (credentials) => {
   const formData = new FormData();
