@@ -17,9 +17,7 @@ function App() {
   }, []);
 
   const checkLogin = async () => {
-    // const SERVER_ORIGIN = process.env.REACT_APP_SERVER_ORIGIN
-
-    const SERVER_ORIGIN = "";
+    const SERVER_ORIGIN = process.env.REACT_APP_SERVER_ORIGIN;
 
     const checkURL = `${SERVER_ORIGIN}/user/me`;
     const loginToken = localStorage.getItem("login_token");
