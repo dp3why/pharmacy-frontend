@@ -2,6 +2,8 @@
 
 ### A full stack project based on React and Spring Boot
 
+https://medicalbridge.netlify.app
+
 - Developed a full-stack web application to showcase new medical products, leveraging Spring Boot for the backend and React for the frontend, enhancing market visibility and user engagement.
 
 - Designed and implemented the User Interface, Implementing robust functionalities including user registration, data management for Manufacturers, Products, and Orders.
