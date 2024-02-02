@@ -1,4 +1,14 @@
-import { Button, Drawer, List, message, Tooltip, Typography } from "antd";
+import {
+  Button,
+  Col,
+  Drawer,
+  Image,
+  List,
+  message,
+  Row,
+  Tooltip,
+  Typography,
+} from "antd";
 import { useEffect, useState } from "react";
 import { checkout, getCart } from "../utils";
 import { ShoppingCartOutlined } from "@ant-design/icons";
@@ -19,12 +29,14 @@ const MyCart = () => {
     setLoading(true);
     getCart()
       .then((data) => {
+        console.log(data);
+
         setCartData(data);
-        // console.log(data);
       })
       .catch((err) => {
-        message.error("You may need to relogin before adding your cart");
-        localStorage.removeItem("login_token");
+        console.error(err.message);
+        // message.error("You may need to relogin before adding your cart");
+        // localStorage.removeItem("login_token");
       })
       .finally(() => {
         setLoading(false);
@@ -76,14 +88,11 @@ const MyCart = () => {
             style={{
               display: "flex",
               justifyContent: "space-between",
+              alignItems: "center",
               marginBottom: 20,
               marginTop: 20,
             }}
           >
-            <Text
-              strong={true}
-              style={{ fontSize: 16 }}
-            >{`Total price: $${cartData?.total_price}`}</Text>
             <div>
               <Button
                 onClick={onCloseDrawer}
@@ -105,6 +114,9 @@ const MyCart = () => {
                 Checkout
               </Button>
             </div>
+            <Text strong={true} style={{ fontSize: 16, marginRight: 30 }}>
+              {cartData ? `Total price: $${cartData?.total_price}` : ""}
+            </Text>
           </div>
         }
       >
@@ -115,8 +127,33 @@ const MyCart = () => {
           renderItem={(item, index) => (
             <List.Item key={index}>
               <List.Item.Meta
-                title={<h3>{item.menu_item_name}</h3>}
-                description={`$${parseFloat(item.price).toFixed(2)}`}
+                title={
+                  <Row
+                    style={{
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Col>
+                      <h3 style={{ maxWidth: 320 }}>{item.menu_item_name}</h3>
+                      <Row
+                        style={{
+                          color: "gray",
+                        }}
+                      >
+                        <p style={{ maxWidth: 350 }}>
+                          {`Price: $${parseFloat(item.price)}`}
+                        </p>
+                        <p style={{ marginLeft: 30 }}>
+                          Quantity: {item.quantity}
+                        </p>
+                      </Row>
+                    </Col>
+                    <Col>
+                      <Image src={item.menu_item_image_url} width={100} />
+                    </Col>
+                  </Row>
+                }
               />
             </List.Item>
           )}

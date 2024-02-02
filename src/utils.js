@@ -77,7 +77,12 @@ export const getSellers = () => {
 
 export const getCart = () => {
   const url = `${SERVER_ORIGIN}/cart`;
-  return fetch(url).then((response) => {
+  return fetch(url, {
+    credentials: "include", // Include cookies with the request
+  }).then((response) => {
+    if (response.status === 401) {
+      throw Error("Unauthorized, please login again");
+    }
     if (response.status < 200 || response.status >= 300) {
       throw Error("Fail to get shopping cart data");
     }
@@ -93,6 +98,7 @@ export const checkout = () => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
   }).then((response) => {
     if (response.status < 200 || response.status >= 300) {
       throw Error("Fail to checkout, please login again");
@@ -110,6 +116,7 @@ export const addItemToCart = (itemId) => {
     headers: {
       "Content-Type": "application/json",
     },
+    credentials: "include",
     body: JSON.stringify(payload),
   }).then((response) => {
     if (response.status < 200 || response.status >= 300) {
