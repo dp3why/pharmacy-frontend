@@ -239,7 +239,7 @@ function App() {
           style={{
             marginTop: "auto",
             marginBottom: "8rem",
-            color: "rgb(210, 220, 220)",
+            color: "rgb(210, 230, 230)",
             fontSize: "2.7rem",
             fontWeight: 800,
             textShadow: "2px 2px 3px rgba(50, 50, 50, 0.3)",

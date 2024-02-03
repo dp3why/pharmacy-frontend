@@ -64,7 +64,10 @@ export default class SignupForm extends Component {
                 { required: true, message: "Please input your password" },
               ]}
             >
-              <Input prefix={<LockOutlined />} placeholder="Password" />
+              <Input.Password
+                prefix={<LockOutlined />}
+                placeholder="Password"
+              />
             </Form.Item>
             <Form.Item
               name="first_name"
