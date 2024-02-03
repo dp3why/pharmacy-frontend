@@ -1,4 +1,14 @@
-import { Avatar, Button, Dropdown, Layout, Menu, Typography } from "antd";
+import {
+  Avatar,
+  Button,
+  Col,
+  Dropdown,
+  Image,
+  Layout,
+  Menu,
+  Row,
+  Typography,
+} from "antd";
 import { useEffect, useState } from "react";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
@@ -89,7 +99,6 @@ function App() {
           backgroundImage: `url("/images/bg.jpg")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-
           height: 620,
           width: "100%",
         }}
@@ -213,8 +222,153 @@ function App() {
       >
         <Showcase authed={authed} />
       </Content>
+      {/* ===== part 1 ==== */}
+      <div
+        style={{
+          backgroundImage: `url("/images/banner.jpg")`,
+          backgroundSize: "cover",
+          width: "100%",
+          height: "600px",
+          display: "flex",
+          paddingLeft: "4rem",
+          justifyContent: "start",
+          alignItems: "center",
+        }}
+      >
+        <Title
+          style={{
+            marginTop: "auto",
+            marginBottom: "8rem",
+            color: "rgb(210, 220, 220)",
+            fontSize: "2.7rem",
+            fontWeight: 800,
+            textShadow: "2px 2px 3px rgba(50, 50, 50, 0.3)",
+          }}
+          level={1}
+        >
+          LIFE SCIENCE GATEWAY
+        </Title>
+      </div>
+      {/* ==== part 2 ==== */}
+      <Row
+        width="100%"
+        style={{
+          padding: "5rem",
+          alignItems: "center",
+          justifyContent: "space-around",
+        }}
+      >
+        <Col
+          style={{
+            maxWidth: "28rem",
+            alignItems: "center",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "2.2rem",
+              fontWeight: 800,
+              color: "rgb(120, 180, 170)",
+            }}
+          >
+            Revolutionizing Healthcare Partnerships
+          </h1>
+          <p
+            style={{
+              fontSize: "1.1rem",
+              color: "gray",
+              maxWidth: "25rem",
+            }}
+          >
+            Step into an ecosystem designed to bridge the gap between healthcare
+            innovators and the market. Our platform not only showcases the
+            latest in vaccines and pharmaceuticals but also offers manufacturers
+            and industry professionals a direct line to the audiences that
+            matter most. Gain insights, foster connections, and drive your
+            products' success with targeted visibility. Collaborate, innovate,
+            and lead the healthcare industry forward with us.
+          </p>
+        </Col>
+        <Col>
+          <Image
+            src="/images/h.png"
+            alt="medical"
+            preview={false}
+            style={{
+              height: 400,
+              width: "100%",
+              objectFit: "cover",
+            }}
+          />
+        </Col>
+      </Row>
 
-      <Footer />
+      {/* ==== part 3 ==== */}
+      <Row
+        width="100%"
+        style={{
+          padding: "5rem",
+          paddingTop: "1rem",
+          justifyContent: "space-around",
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "row-reverse",
+        }}
+      >
+        <Col
+          style={{
+            maxWidth: "28rem",
+            marginLeft: "2rem",
+            alignItems: "center",
+          }}
+        >
+          <h1
+            style={{
+              fontSize: "2.2rem",
+              fontWeight: 800,
+              color: "rgb(120, 180, 170)",
+            }}
+          >
+            Accelerating Success in Life Sciences
+          </h1>
+          <p
+            style={{
+              fontSize: "1.1rem",
+              color: "gray",
+            }}
+          >
+            Enter a realm where life science innovations are not just showcased
+            but propelled into the spotlight. Our platform provides a unique
+            space for scientists, researchers, and companies to illuminate their
+            contributions to the field. By offering a platform that emphasizes
+            discovery, engagement, and knowledge sharing, we enable life science
+            pioneers to accelerate their journey from concept to real-world
+            impact. Together, we're actively shaping the future of life
+            sciences, ensuring that innovations reach beyond the lab.
+          </p>
+        </Col>
+        <Col>
+          <Image
+            src="/images/tt.png"
+            alt="medical"
+            preview={false}
+            style={{
+              height: 400,
+              width: "100%",
+              objectFit: "cover",
+            }}
+          />
+        </Col>
+      </Row>
+      <Footer
+        style={{
+          textAlign: "center",
+          padding: "20px",
+        }}
+      >
+        <h2 style={{ color: "gray" }}>MedicalBridge@2024</h2>{" "}
+        <p style={{ color: "gray" }}>dp3why@gmail.com</p>
+      </Footer>
     </Layout>
   );
 }
