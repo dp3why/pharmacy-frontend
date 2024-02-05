@@ -124,6 +124,7 @@ const Showcase = ({ authed }) => {
                 hoverable
                 cover={
                   <Image
+                    id={item.name}
                     preview={false}
                     src={item.image_url}
                     alt={item.name}
@@ -204,6 +205,7 @@ const Showcase = ({ authed }) => {
                   hoverable={true}
                   cover={
                     <Image
+                      key={item.name}
                       src={item.image_url}
                       alt={item.name}
                       style={{
