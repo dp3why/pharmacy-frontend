@@ -116,7 +116,7 @@ export const addItemToCart = (itemId) => {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "same-origin",
+    credentials: "include",
     body: JSON.stringify(payload),
   }).then((response) => {
     if (response.status < 200 || response.status >= 300) {
