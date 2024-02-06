@@ -1,5 +1,3 @@
-import axios from "axios";
-
 var SERVER_ORIGIN = process.env.REACT_APP_SERVER_ORIGIN;
 
 // const SERVER_ORIGIN = "";
