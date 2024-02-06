@@ -14,15 +14,13 @@ export const login = (credentials) => {
   return fetch(loginUrl, {
     method: "POST",
     credentials: "include",
-    // headers: {
-    //   "Content-Type": "application/json",
-    // },
+
     body: formData,
   }).then((response) => {
     if (response.status < 200 || response.status >= 300) {
       throw Error("Fail to log in");
     }
-  }); // returns a promise
+  });
 };
 
 export const logout = () => {
