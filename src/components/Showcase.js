@@ -22,20 +22,15 @@ import Meta from "antd/lib/card/Meta";
 
 const { Title } = Typography;
 const AddToCartButton = ({ itemId, authed }) => {
-  const [loading, setLoading] = useState(false);
-
   const AddToCart = () => {
     if (!authed) {
       message.error("Please login first");
       return;
     }
-    setLoading(true);
+
     addItemToCart(itemId)
       .then(() => message.success(`Successfully add item`))
-      .catch((err) => message.error(err.message))
-      .finally(() => {
-        setLoading(false);
-      });
+      .catch((err) => message.error(err.message));
   };
 
   return (

@@ -1,4 +1,6 @@
-const SERVER_ORIGIN = process.env.REACT_APP_SERVER_ORIGIN;
+import axios from "axios";
+
+var SERVER_ORIGIN = process.env.REACT_APP_SERVER_ORIGIN;
 
 // const SERVER_ORIGIN = "";
 
@@ -111,16 +113,17 @@ export const addItemToCart = (itemId) => {
     menu_id: itemId,
   };
   const url = `${SERVER_ORIGIN}/cart`;
-  return fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-    body: JSON.stringify(payload),
-  }).then((response) => {
-    if (response.status < 200 || response.status >= 300) {
-      throw Error("Fail to add menu item to shopping cart");
-    }
-  });
+  return axios
+    .post(url, payload, {
+      withCredentials: true, // Ensures cookies are included in cross-origin requests
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    })
+    .then((response) => {
+      if (response.status < 200 || response.status >= 300) {
+        throw Error("Fail to add menu item to shopping cart");
+      }
+    });
 };
