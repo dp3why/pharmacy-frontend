@@ -113,16 +113,16 @@ export const addItemToCart = (itemId) => {
     menu_id: itemId,
   };
   const url = `${SERVER_ORIGIN}/cart`;
-  return axios
-    .post(url, payload, {
-      withCredentials: true,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-    .then((response) => {
-      if (response.status < 200 || response.status >= 300) {
-        throw Error("Fail to add menu item to shopping cart");
-      }
-    });
+  return fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "same-origin",
+    body: JSON.stringify(payload),
+  }).then((response) => {
+    if (response.status < 200 || response.status >= 300) {
+      throw Error("Fail to add menu item to shopping cart");
+    }
+  });
 };
