@@ -90,8 +90,7 @@ const Showcase = ({ authed }) => {
         })
         .finally(() => {
           setLoading(false);
-
-          setTimeout(() => setListLoading(false), 200); // Use a shorter time frame for the loading indicator
+          setListLoading(false); // Use a shorter time frame for the loading indicator
         });
     }
   }, [curRest]);

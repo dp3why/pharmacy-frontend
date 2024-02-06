@@ -15,23 +15,29 @@ import { ShoppingCartOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
-const MyCart = () => {
+const MyCart = ({ authed }) => {
   const [cartVisible, setCartVisible] = useState(false);
   const [cartData, setCartData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [checking, setChecking] = useState(false);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     if (!cartVisible) {
       return;
     }
 
+    if (cartVisible && !authed) {
+      console.log("Not logged in");
+    }
+
     setLoading(true);
+
     getCart()
       .then((data) => {
         console.log(data);
-
         setCartData(data);
+        setTotalPrice(data.total_price);
       })
       .catch((err) => {
         console.error(err.message);
@@ -41,7 +47,7 @@ const MyCart = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [cartVisible]);
+  }, [cartVisible, authed]);
 
   const onCheckOut = () => {
     setChecking(true);
@@ -115,7 +121,7 @@ const MyCart = () => {
               </Button>
             </div>
             <Text strong={true} style={{ fontSize: 16, marginRight: 30 }}>
-              {cartData ? `Total price: $${cartData?.total_price}` : ""}
+              {totalPrice > 0 && `Total price: $${totalPrice}`}
             </Text>
           </div>
         }

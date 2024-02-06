@@ -49,8 +49,6 @@ function App() {
         const data = await res.json();
         setUserInfo(data);
         setAuthed(true);
-      } else {
-        setAuthed(false);
       }
     } catch (error) {}
   };
@@ -146,7 +144,7 @@ function App() {
                     marginTop: "10px",
                   }}
                 >
-                  <MyCart />
+                  <MyCart authed={authed} />
 
                   <Dropdown overlay={menu}>
                     <Avatar
