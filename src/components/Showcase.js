@@ -41,7 +41,6 @@ const AddToCartButton = ({ itemId, authed }) => {
   return (
     <Tooltip title="Add to shopping cart">
       <Button
-        loading={loading}
         type="primary"
         shape="circle"
         icon={<PlusOutlined />}
