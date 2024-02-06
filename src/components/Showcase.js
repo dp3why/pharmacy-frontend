@@ -165,6 +165,7 @@ const Showcase = ({ authed }) => {
 
       {curRest && (
         <Modal
+          destroyOnClose={true}
           loading={loading ? loading : false}
           title={
             <Title
