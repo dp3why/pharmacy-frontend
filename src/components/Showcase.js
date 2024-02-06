@@ -7,6 +7,7 @@ import {
   message,
   Modal,
   Tooltip,
+  Spin,
 } from "antd";
 import { useEffect, useState } from "react";
 import { addItemToCart, getMenus, getSellers } from "../utils";
@@ -55,7 +56,7 @@ const Showcase = ({ authed }) => {
   const [sellerData, setSellerData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [loadingRest, setLoadingRest] = useState(false);
-
+  const [listLoading, setListLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handleCancel = () => {
@@ -79,6 +80,7 @@ const Showcase = ({ authed }) => {
   useEffect(() => {
     if (curRest) {
       setLoading(true);
+      setListLoading(true); // Initially show loading
       getMenus(curRest)
         .then((data) => {
           setProductData(data);
@@ -88,6 +90,8 @@ const Showcase = ({ authed }) => {
         })
         .finally(() => {
           setLoading(false);
+
+          setTimeout(() => setListLoading(false), 200); // Use a shorter time frame for the loading indicator
         });
     }
   }, [curRest]);
@@ -162,11 +166,11 @@ const Showcase = ({ authed }) => {
           );
         }}
       />
-
+      {/* =========== Product List =========== */}
       {curRest && (
         <Modal
+          loading={loading}
           destroyOnClose={true}
-          loading={loading ? loading : false}
           title={
             <Title
               style={{
@@ -185,48 +189,59 @@ const Showcase = ({ authed }) => {
           footer={null}
           width="80%"
         >
-          <List
-            style={{ marginTop: 20 }}
-            grid={{
-              gutter: 16,
-              xs: 1,
-              sm: 1,
-              md: 3,
-              lg: 3,
-              xl: 3,
-              xxl: 3,
-            }}
-            dataSource={productData}
-            renderItem={(item, index) => (
-              <List.Item key={"key" + index}>
-                <Card
-                  title={item.name}
-                  extra={<AddToCartButton authed={authed} itemId={item.id} />}
-                  key={"card" + index}
-                  hoverable={true}
-                  cover={
-                    <Image
-                      key={item.name}
-                      src={item.image_url}
-                      alt={item.name}
-                      style={{
-                        border: "1px solid #f0f0f0",
-                        height: 220,
-                        width: "100%",
-                        objectFit: "cover",
-                        overflow: "hidden",
-                      }}
+          {listLoading ? (
+            <Spin
+              size="large"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginTop: 50,
+              }}
+            />
+          ) : (
+            <List
+              style={{ marginTop: 20 }}
+              grid={{
+                gutter: 16,
+                xs: 1,
+                sm: 1,
+                md: 3,
+                lg: 3,
+                xl: 3,
+                xxl: 3,
+              }}
+              dataSource={productData}
+              renderItem={(item, index) => (
+                <List.Item key={"key" + index}>
+                  <Card
+                    title={item.name}
+                    extra={<AddToCartButton authed={authed} itemId={item.id} />}
+                    key={"card" + index}
+                    hoverable={true}
+                    cover={
+                      <Image
+                        key={item.name}
+                        src={item.image_url}
+                        alt={item.name}
+                        style={{
+                          border: "1px solid #f0f0f0",
+                          height: 220,
+                          width: "100%",
+                          objectFit: "cover",
+                          overflow: "hidden",
+                        }}
+                      />
+                    }
+                  >
+                    <Meta
+                      description={item.description}
+                      title={`Price: ${item.price}`}
                     />
-                  }
-                >
-                  <Meta
-                    description={item.description}
-                    title={`Price: ${item.price}`}
-                  />
-                </Card>
-              </List.Item>
-            )}
-          />
+                  </Card>
+                </List.Item>
+              )}
+            />
+          )}
         </Modal>
       )}
     </>
