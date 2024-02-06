@@ -115,10 +115,9 @@ export const addItemToCart = (itemId) => {
   const url = `${SERVER_ORIGIN}/cart`;
   return axios
     .post(url, payload, {
-      withCredentials: true, // Ensures cookies are included in cross-origin requests
+      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
       },
     })
     .then((response) => {
